@@ -1,0 +1,84 @@
+_schema-version: "3.2"
+ID: MD_CASCADING_KPI
+version: 1.0.1
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npx cds build --production
+modules:
+  - name: MD_CASCADING_KPI-srv
+    type: nodejs
+    path: .
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+      disk-quota: 800M
+    build-parameters:
+      ignore: [".*/", "*default-env.json", "./db/node_modules", "./node_modules", "./mta_archives"]
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: MD_CASCADING_KPI-db
+      - name: MD_CASCADING_KPI-dest
+      - name: MD_CASCADING_KPI-uaa
+      - name: job-scheduler
+      - name: MD_CASCADING_KPI-Logs
+      
+  - name: MD_CASCADING_KPI-db-deployer
+    type: hdb
+    path: db
+    parameters:
+      memory: 512M
+      disk-quota: 512M
+      buildpack: nodejs_buildpack
+    build-parameters:
+      ignore: ["node_modules","package-lock.json","default-env.json",".env"]
+    requires:
+      - name: MD_CASCADING_KPI-db
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: grant-service      
+
+resources:
+  - name: MD_CASCADING_KPI-db
+    type: com.sap.xs.hdi-container
+    properties:
+      hdi-container-name: '${service-name}'      
+  - name: grant-service
+    parameters:
+      service-name: grant-service
+    type: org.cloudfoundry.existing-service      
+  - name: MD_CASCADING_KPI-dest
+    parameters:
+      service-plan: lite
+      service: destination
+  - name: MD_CASCADING_KPI-uaa
+    type: org.cloudfoundry.existing-service
+  - name: MD_CASCADING_KPI-Logs
+    parameters:
+      service-name: MD_CASCADING_KPI-Logs
+      service: application-logs
+      service-plan: lite
+    type: org.cloudfoundry.managed-service
+  - name: cf-autoscaler
+    parameters:
+      service-name: cf-autoscaler
+      service: autoscaler
+      service-plan: standard
+    type: org.cloudfoundry.managed-service
+  - name: job-scheduler
+    parameters:
+      service-name: job-scheduler
+      service: jobscheduler
+      service-plan: standard
+    type: org.cloudfoundry.managed-service
+  - name: connectivity
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: lite
+      service: connectivity    
