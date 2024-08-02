@@ -23,3 +23,9 @@ how to deploy
 1) edit mta.yaml , comment row 34 and uncomment row 35
 2) on terminal -> "mbt build" 
 3) then "cf deploy"
+4) restore the original comment and uncomment row
+
+how to manual execute task (to snyc tables)
+1) open sap hana db
+2) connect to the db, open "tasks" menu
+3) retrieve the list of tasks and execute 
