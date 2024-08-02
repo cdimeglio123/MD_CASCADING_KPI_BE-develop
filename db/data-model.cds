@@ -133,12 +133,12 @@ entity ZKPI_PDV_WEIGHT {
     key SETTIMANA: String(2);
     LORDO_CY: Decimal(17,2);
     N_SCO_CY: Integer;
-    WEIGHT_N_SCO_CY: Decimal(17,2);
-    WEIGHT_LORDO_CY: Decimal(17,2);
+    WEIGHT_N_SCO_CY: Double;
+    WEIGHT_LORDO_CY: Double;
     LORDO_PY: Decimal(17,2);
     N_SCO_PY: Integer;
-    WEIGHT_N_SCO_PY: Decimal(17,2);
-    WEIGHT_LORDO_PY: Decimal(17,2);
+    WEIGHT_N_SCO_PY: Double;
+    WEIGHT_LORDO_PY: Double;
     UPD_TYPE: String(1);
     UPD_TIME: Timestamp;
 }
