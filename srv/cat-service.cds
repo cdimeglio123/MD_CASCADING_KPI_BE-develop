@@ -32,4 +32,5 @@ TYPE ZKPI_PDV_ECONOMICO_AGGR{
 @readonly entity PdvAnalyticsAggr (PDV: String(32), ANNO_MESE_DA: String(8), ANNO_MESE_A: String(8)) as select from db.ZKPI_PDV_ANALYTICS_AGGR(PDV: :PDV, ANNO_MESE_DA: :ANNO_MESE_DA,ANNO_MESE_A: :ANNO_MESE_A ){*};
 @readonly entity PdvAnalyticsTimeRange as projection on db.ZKPI_PDV_ANALYTICS_TIME_RANGE_V;
 @readonly entity PdvAnalyticsWeekDay as projection on db.ZKPI_PDV_ANALYTICS_WEEK_DAY_V;
+@readonly entity PdvWeight as projection on db.ZKPI_PDV_WEIGHT;
 };

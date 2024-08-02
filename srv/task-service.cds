@@ -1,8 +1,8 @@
-@(requires: ['system-user', 'Jobs'])
-@path: '/task'
+// @(requires: ['system-user', 'Jobs'])
+// @path: '/task'
 
-service TaskService {
+// service TaskService {
 
-  action   syncDbTables(tasks : array of String) returns String;
+//   action   syncDbTables(tasks : array of String) returns String;
 
-};
+// };

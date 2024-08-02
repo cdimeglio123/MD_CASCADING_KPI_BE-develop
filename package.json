@@ -6,20 +6,22 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^7.5.3",
+    "@cap-js/hana": "^1",
+    "@sap/cds-dk": "^7",
     "@sap/cds-hana": "^2.0.0",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.7",
     "@sap/xssec": "^3.6.1",
     "express": "^4.18.2",
-    "passport": "^0.7.0",
-    "job-scheduler-helper": "git+https://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:x-oauth-basic@github.com/SyskoplanReplyVertical/JobSchedulerHelper.git#1.0.2"   
+    "passport": "^0.7.0"
   },
   "devDependencies": {
+    "@sap/cds": "^8.1.0",
     "@sap/cds-dk": "^7"
-  },  
+  },
   "scripts": {
     "start": "cds-serve",
-    "build": "cds build --production"
+    "build": "cds build --production",
+    "prepare_deploy": "npm install @sap/cds && mbt build "
   },
   "cds": {
     "requires": {

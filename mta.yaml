@@ -26,23 +26,24 @@ modules:
       - name: MD_CASCADING_KPI-db
       - name: MD_CASCADING_KPI-dest
       - name: MD_CASCADING_KPI-uaa
-      - name: job-scheduler
+      # - name: job-scheduler
       - name: MD_CASCADING_KPI-Logs
       
   - name: MD_CASCADING_KPI-db-deployer
     type: hdb
     path: db
+    # path: gen/db
     parameters:
       memory: 512M
       disk-quota: 512M
       buildpack: nodejs_buildpack
     build-parameters:
-      ignore: ["node_modules","package-lock.json","default-env.json",".env"]
+      ignore: ["node_modules", "package-lock.json", "default-env.json", ".env"]
     requires:
       - name: MD_CASCADING_KPI-db
         properties:
           TARGET_CONTAINER: '~{hdi-container-name}'
-      - name: grant-service      
+      - name: grant-service
 
 resources:
   - name: MD_CASCADING_KPI-db
@@ -71,12 +72,12 @@ resources:
       service: autoscaler
       service-plan: standard
     type: org.cloudfoundry.managed-service
-  - name: job-scheduler
-    parameters:
-      service-name: job-scheduler
-      service: jobscheduler
-      service-plan: standard
-    type: org.cloudfoundry.managed-service
+  # - name: job-scheduler
+  #   parameters:
+  #     service-name: job-scheduler
+  #     service: jobscheduler
+  #     service-plan: standard
+  #   type: org.cloudfoundry.managed-service
   - name: connectivity
     type: org.cloudfoundry.managed-service
     parameters:

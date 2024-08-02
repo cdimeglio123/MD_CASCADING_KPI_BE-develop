@@ -123,6 +123,26 @@ entity ZKPI_PDV_VENSMI {
     UPD_TIME: Timestamp;    
 };
 
+//ZCV_PRD_BTP_014
+entity ZKPI_PDV_WEIGHT {
+    key PDV: String(6);
+    key ANNO: String(4);
+    key ANNOMESE: String(6);
+    key ANNOSETTIMANA: String(6);
+    key REPARTO: String(3);
+    key SETTIMANA: String(2);
+    LORDO_CY: Decimal(17,2);
+    N_SCO_CY: Integer;
+    WEIGHT_N_SCO_CY: Decimal(17,2);
+    WEIGHT_LORDO_CY: Decimal(17,2);
+    LORDO_PY: Decimal(17,2);
+    N_SCO_PY: Integer;
+    WEIGHT_N_SCO_PY: Decimal(17,2);
+    WEIGHT_LORDO_PY: Decimal(17,2);
+    UPD_TYPE: String(1);
+    UPD_TIME: Timestamp;
+}
+
 //ZCV_PRD_BTP_005
 entity ZKPI_PDV_SCONTR {
     key PDV: String(32);

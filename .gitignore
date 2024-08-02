@@ -1,0 +1,11 @@
+gen/
+db/node_modules/*
+node_modules/
+.vscode/settings.json
+
+# auto generated wildcard
+db/.env
+# auto generated wildcard
+gen/db/.env
+mta_archives/
+package-lock.json
