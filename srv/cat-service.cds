@@ -33,4 +33,5 @@ TYPE ZKPI_PDV_ECONOMICO_AGGR{
 @readonly entity PdvAnalyticsTimeRange as projection on db.ZKPI_PDV_ANALYTICS_TIME_RANGE_V;
 @readonly entity PdvAnalyticsWeekDay as projection on db.ZKPI_PDV_ANALYTICS_WEEK_DAY_V;
 @readonly entity PdvWeight as projection on db.ZKPI_PDV_WEIGHT;
+@readonly entity LastMonthCE as select from db.ZKPI_PDV_ECONOMICO distinct {key ANNO_MESE: String} order by ANNO_MESE desc limit 1;
 };
